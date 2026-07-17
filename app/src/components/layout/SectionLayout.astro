@@ -1,0 +1,41 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import SectionNav from './SectionNav.astro';
+import type { SectionRecord } from '../../db/database';
+
+export interface Props {
+  title: string;
+  section: SectionRecord;
+  allSections: SectionRecord[];
+}
+
+const { title, section, allSections } = Astro.props;
+---
+
+<AppLayout title={title}>
+  <main class="shell">
+    <div class="section-layout">
+      <aside class="section-sidebar">
+        <SectionNav sections={allSections} currentSlug={section.slug} basePath={`/${section.module_id.toUpperCase()}`} />
+      </aside>
+      <div class="section-body">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">{section.module_id} · Sección {String(section.number).padStart(2, '0')}</p>
+            <h1>{section.title}</h1>
+            <p class="lead">{section.summary}</p>
+            <div class="metric-grid" aria-label="Resumen de la sección">
+              <div class="metric"><strong>{section.estimated_minutes} min</strong><span>tiempo estimado</span></div>
+              <div class="metric"><strong>{section.source_kind}</strong><span>tipo de fuente</span></div>
+            </div>
+          </div>
+          <aside class="panel pad">
+            <span class="chip">Navegación lateral</span>
+            <p class="muted" style="margin-top: 16px;">Usa la barra lateral para saltar entre secciones del módulo.</p>
+          </aside>
+        </section>
+        <slot />
+      </div>
+    </div>
+  </main>
+</AppLayout>

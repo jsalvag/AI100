@@ -1,0 +1,28 @@
+---
+export interface Reference {
+  title: string;
+  url: string;
+  source: string;
+}
+
+export interface Props {
+  references: Reference[];
+}
+
+const { references } = Astro.props;
+---
+
+<div class="reference-list">
+  {references.length === 0 ? (
+    <p class="muted">No hay referencias registradas para esta sección.</p>
+  ) : (
+    <ul>
+      {references.map((ref) => (
+        <li>
+          <a href={ref.url} target="_blank" rel="noopener noreferrer">{ref.title}</a>
+          <span class="muted"> — {ref.source}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>

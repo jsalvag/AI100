@@ -1,0 +1,11 @@
+---
+export interface Props {
+  label?: string;
+}
+
+const { label } = Astro.props;
+---
+
+<aside class="control-panel" aria-label={label ?? 'Controles'}>
+  <slot />
+</aside>

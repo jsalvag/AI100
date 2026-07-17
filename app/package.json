@@ -1,0 +1,33 @@
+{
+  "name": "ai-lab-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev --host 0.0.0.0",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 0.0.0.0",
+    "lint": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "db:seed": "node --experimental-strip-types src/db/seed.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed --project=chromium"
+  },
+  "dependencies": {
+    "@astrojs/node": "10.1.4",
+    "@astrojs/react": "latest",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "astro": "6.4.8",
+    "react": "latest",
+    "react-dom": "latest",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "@playwright/test": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest"
+  }
+}

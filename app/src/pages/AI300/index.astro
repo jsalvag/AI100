@@ -1,0 +1,35 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import { listModules } from '../../db/database';
+
+const modules = listModules() as Array<{ id: string; title: string; level: string; status: string; description: string }>;
+const ai300 = modules.find((m) => m.id === 'ai300');
+---
+
+<AppLayout title="AI300 | AI Lab">
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">AI300</p>
+        <h1>Módulo avanzado</h1>
+        <p class="lead">
+          AI300 es el nivel master del laboratorio. Está proyectado para cubrir arquitectura de sistemas de IA,
+          automatización y evaluación avanzada.
+        </p>
+      </div>
+      <aside class="panel pad">
+        <span class="chip">{ai300?.status ?? 'planned'}</span>
+        <p class="muted" style="margin-top: 16px;">Este módulo aún no está disponible. Se activará según el roadmap del laboratorio.</p>
+      </aside>
+    </section>
+    <section class="section-block">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Roadmap</p>
+          <h2>Proyectado para Q1 FY'26</h2>
+        </div>
+        <p class="lead">AI300 se construirá después de que AI200 esté estable y se haya probado el flujo de generación de contenido.</p>
+      </div>
+    </section>
+  </main>
+</AppLayout>

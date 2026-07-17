@@ -1,0 +1,17 @@
+---
+export interface Props {
+  variant?: 'default' | 'bordered';
+  padding?: 'sm' | 'md' | 'lg';
+  as?: 'article' | 'div' | 'a';
+  href?: string;
+}
+
+const { variant = 'default', padding = 'md', as: Tag = 'article', href } = Astro.props;
+const classes = `card card--${variant} card--pad-${padding}`;
+const Wrapper = href ? 'a' : Tag;
+const wrapperAttrs = href ? { href, class: classes } : { class: classes };
+---
+
+<Wrapper {...wrapperAttrs}>
+  <slot />
+</Wrapper>

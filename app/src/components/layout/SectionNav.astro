@@ -1,0 +1,30 @@
+---
+import type { SectionRecord } from '../../db/database';
+
+export interface Props {
+  sections: SectionRecord[];
+  currentSlug?: string;
+  basePath: string;
+}
+
+const { sections, currentSlug, basePath } = Astro.props;
+---
+
+<nav class="section-nav" aria-label="Navegación de secciones">
+  {sections.map((section) => {
+    const href = `${basePath}/${section.slug}`;
+    const isActive = section.slug === currentSlug;
+    const isAvailable = section.status === 'available';
+    return (
+      <a
+        href={isAvailable ? href : undefined}
+        class={`section-nav-item ${isActive ? 'active' : ''} ${!isAvailable ? 'disabled' : ''}`}
+        aria-current={isActive ? 'true' : undefined}
+        aria-disabled={!isAvailable}
+      >
+        <span class="section-nav-num">{String(section.number).padStart(2, '0')}</span>
+        <span class="section-nav-title">{section.title}</span>
+      </a>
+    );
+  })}
+</nav>

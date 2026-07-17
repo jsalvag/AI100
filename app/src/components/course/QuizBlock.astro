@@ -1,0 +1,26 @@
+---
+export interface Question {
+  id: string;
+  text: string;
+  options: string[];
+  correct: string;
+}
+
+export interface Props {
+  questions: Question[];
+}
+
+const { questions } = Astro.props;
+---
+
+<div class="quiz-block">
+  {questions.map((q) => (
+    <label class="quiz-card">
+      <p>{q.text}</p>
+      <select aria-label={q.text}>
+        <option value="">Elegir respuesta</option>
+        {q.options.map((opt) => <option value={opt}>{opt}</option>)}
+      </select>
+    </label>
+  ))}
+</div>

@@ -1,0 +1,24 @@
+---
+export interface Props {
+  number: number;
+  title: string;
+  summary: string;
+  status: 'available' | 'planned';
+  slug: string;
+  moduleId: string;
+}
+
+const { number, title, summary, status, slug, moduleId } = Astro.props;
+const href = status === 'available' ? `/${moduleId.toUpperCase()}/${slug}` : undefined;
+const Tag = href ? 'a' : 'article';
+const attrs = href ? { href, class: 'panel card-link' } : { class: 'panel card-link', 'aria-disabled': 'true' };
+---
+
+<Tag {...attrs}>
+  <div class="card-meta">
+    <span>Sección {String(number).padStart(2, '0')}</span>
+    <span>{status === 'available' ? 'Disponible' : 'Pendiente'}</span>
+  </div>
+  <h3>{title}</h3>
+  <p class="muted">{summary}</p>
+</Tag>

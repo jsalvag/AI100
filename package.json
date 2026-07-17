@@ -1,0 +1,15 @@
+{
+  "name": "ai-lab-workspace",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --dir app dev",
+    "build": "pnpm --dir app build",
+    "preview": "pnpm --dir app preview",
+    "lint": "pnpm --dir app lint",
+    "test:e2e": "pnpm --dir app test:e2e",
+    "test:e2e:headed": "pnpm --dir app test:e2e:headed",
+    "db:seed": "pnpm --dir app db:seed"
+  },
+  "packageManager": "pnpm@11.9.0"
+}

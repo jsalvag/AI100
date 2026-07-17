@@ -1,0 +1,17 @@
+---
+export interface Props {
+  prompt: string;
+  difficulty: 'básico' | 'intermedio' | 'avanzado';
+}
+
+const { prompt, difficulty } = Astro.props;
+---
+
+<article class="panel pad exercise-block">
+  <div class="card-meta">
+    <span>Ejercicio</span>
+    <span>{difficulty}</span>
+  </div>
+  <p>{prompt}</p>
+  <slot name="solution" />
+</article>

@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+
+const { title = 'AI Lab' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <script is:inline>
+      const savedTheme = localStorage.getItem('ai-lab-theme');
+      const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = savedTheme || preferredTheme;
+    </script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand" href="/">AI Lab <span>aprendizaje interactivo local</span></a>
+        <div class="top-actions">
+          <a class="button" href="/AI100">AI100</a>
+          <label class="muted" for="theme-select">Tema</label>
+          <select class="theme-select" id="theme-select" aria-label="Seleccionar tema">
+            <option value="light">Claro</option>
+            <option value="dark">Oscuro</option>
+          </select>
+        </div>
+      </div>
+    </header>
+    <slot />
+    <script is:inline>
+      const select = document.getElementById('theme-select');
+      const current = document.documentElement.dataset.theme || 'light';
+      select.value = current;
+      select.addEventListener('change', () => {
+        document.documentElement.dataset.theme = select.value;
+        localStorage.setItem('ai-lab-theme', select.value);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import { listModules } from '../../db/database';
+
+const modules = listModules() as Array<{ id: string; title: string; level: string; status: string; description: string }>;
+const ai200 = modules.find((m) => m.id === 'ai200');
+---
+
+<AppLayout title="AI200 | AI Lab">
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">AI200</p>
+        <h1>Módulo intermedio</h1>
+        <p class="lead">
+          AI200 está planificado como el siguiente nivel después de completar AI100.
+          Aquí se cubrirán técnicas de evaluación, pipelines de producción y flujos de trabajo más exigentes.
+        </p>
+      </div>
+      <aside class="panel pad">
+        <span class="chip">{ai200?.status ?? 'planned'}</span>
+        <p class="muted" style="margin-top: 16px;">Este módulo aún no tiene secciones publicadas. Vuelve cuando AI100 esté completo.</p>
+      </aside>
+    </section>
+    <section class="section-block">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Estado</p>
+          <h2>En preparación</h2>
+        </div>
+        <p class="lead">El contenido de AI200 se generará desde fuentes estructuradas cuando el módulo esté en desarrollo activo.</p>
+      </div>
+      <article class="panel pad" style="max-width: 640px;">
+        <h3>Temas previstos</h3>
+        <ul class="muted" style="line-height: 1.8;">
+          <li>Evaluación avanzada de modelos</li>
+          <li>Pipelines de datos y MLOps</li>
+          <li>Optimización de hiperparámetros</li>
+          <li>Interpretabilidad y explicabilidad</li>
+          <li>Detección de sesgo y fairness</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</AppLayout>

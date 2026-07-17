@@ -1,0 +1,32 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+
+export interface Props {
+  title: string;
+  moduleId: string;
+  moduleTitle: string;
+  moduleLevel: string;
+  description: string;
+}
+
+const { title, moduleId, moduleTitle, moduleLevel, description } = Astro.props;
+---
+
+<AppLayout title={title}>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">{moduleId}</p>
+        <h1>{moduleTitle}</h1>
+        <p class="lead">{description}</p>
+      </div>
+      <aside class="panel pad">
+        <span class="chip">{moduleLevel}</span>
+        <p class="muted" style="margin-top: 16px;">Contenido estructurado desde SQLite.</p>
+      </aside>
+    </section>
+    <section class="section-block">
+      <slot />
+    </section>
+  </main>
+</AppLayout>

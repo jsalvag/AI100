@@ -1,0 +1,64 @@
+---
+import AppLayout from '../layouts/AppLayout.astro';
+import ModuleCard from '../components/course/ModuleCard.astro';
+import { listModules, listSections } from '../db/database';
+
+const modules = listModules() as Array<{ id: string; title: string; level: string; status: string; description: string }>;
+const ai100Sections = listSections('ai100');
+const availableCount = ai100Sections.filter((section) => section.status === 'available').length;
+const section7 = ai100Sections.find((s) => s.slug === 'algoritmos-aprendizaje-automatico');
+---
+
+<AppLayout title="AI Lab">
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Laboratorio local</p>
+        <h1>Curso de IA organizado para estudiar haciendo.</h1>
+        <p class="lead">
+          Una aplicación local para transformar AI100, AI200 y AI300 en módulos navegables, con contenido estructurado,
+          laboratorios interactivos, progreso persistente y una base preparada para generar nuevas secciones desde fuentes web.
+        </p>
+        <div class="metric-grid" aria-label="Estado del laboratorio">
+          <div class="metric"><strong>{modules.length}</strong><span>módulos base</span></div>
+          <div class="metric"><strong>{availableCount}</strong><span>secciones operativas</span></div>
+          <div class="metric"><strong>14</strong><span>temas del módulo activo</span></div>
+        </div>
+      </div>
+      <aside class="panel pad">
+        <span class="chip">AI100 · módulo activo</span>
+        <p style="margin-top: 14px; font-weight: 750;">14 secciones — de fundamentos a proyecto integrador</p>
+        <ul style="list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 6px;">
+          <li style="display: flex; gap: 6px;"><span style="color: var(--ok);">→</span> <a href="/AI100" style="color: var(--accent);">Ir al índice del módulo</a></li>
+          <li style="display: flex; gap: 6px;"><span style="color: var(--ok);">→</span> <a href="/AI100/introduccion-inteligencia-artificial" style="color: var(--accent);">Empezar por la sección 1</a></li>
+          <li style="display: flex; gap: 6px;"><span style="color: var(--ok);">→</span> <a href="/AI100/algoritmos-aprendizaje-automatico" style="color: var(--accent);">Laboratorio interactivo: sección 7</a></li>
+          <li style="display: flex; gap: 6px;"><span style="color: var(--ok);">→</span> <a href="/AI100/proyecto-final-revision" style="color: var(--accent);">Proyecto final integrador</a></li>
+        </ul>
+        <p style="margin-top: 14px; color: var(--muted); font-size: 0.82rem;">
+          {section7?.estimated_minutes ?? 55} min estimados por sección. Datos persistentes en SQLite local.
+        </p>
+      </aside>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Módulos</p>
+          <h2>Ruta académica</h2>
+        </div>
+        <p class="lead">AI100 está activo con 14 secciones; AI200 y AI300 quedan modelados para habilitar crecimiento sin cambiar la arquitectura.</p>
+      </div>
+      <div class="module-grid">
+        {modules.map((module) => (
+          <ModuleCard
+            title={module.title}
+            level={module.level}
+            status={module.status}
+            description={module.description}
+            href={module.id === 'ai100' ? `/AI100` : undefined}
+          />
+        ))}
+      </div>
+    </section>
+  </main>
+</AppLayout>

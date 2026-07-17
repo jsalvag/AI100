@@ -1,0 +1,113 @@
+.lab-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.lab-tabs,
+.option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tab-button,
+.lab-button {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  min-height: 38px;
+  padding: 8px 11px;
+  cursor: pointer;
+  font-weight: 760;
+}
+
+.tab-button.active,
+.lab-button.active,
+.lab-button.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.lab-canvas {
+  width: 100%;
+  min-height: 360px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px),
+    var(--surface);
+  background-size: 48px 48px;
+}
+
+.control-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.control-box {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 14px;
+}
+
+.control-box label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 720;
+}
+
+.control-box input[type='range'] { width: 100%; }
+
+.answer-panel {
+  border-left: 3px solid var(--accent);
+  background: var(--surface-2);
+  padding: 14px;
+}
+
+.answer-panel strong { display: block; margin-bottom: 6px; }
+
+.mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.mini-table th,
+.mini-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.quiz-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 12px;
+}
+
+.quiz-card select {
+  width: 100%;
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--ink);
+  padding: 9px;
+}
+
+@media (max-width: 760px) {
+  .quiz-grid { grid-template-columns: 1fr; }
+}

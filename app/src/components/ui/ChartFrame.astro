@@ -1,0 +1,13 @@
+---
+export interface Props {
+  label: string;
+  height?: number;
+}
+
+const { label, height = 360 } = Astro.props;
+---
+
+<figure class="chart-frame" style={`min-height: ${height}px`} role="img" aria-label={label}>
+  <slot />
+  <figcaption class="sr-only">{label}</figcaption>
+</figure>

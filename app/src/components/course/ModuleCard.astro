@@ -1,0 +1,18 @@
+---
+export interface Props {
+  title: string;
+  level: string;
+  status: string;
+  description: string;
+  href?: string;
+}
+
+const { title, level, status, description, href } = Astro.props;
+---
+
+<article class="panel card-link">
+  <div class="card-meta"><span>{level}</span><span>{status}</span></div>
+  <h3>{title}</h3>
+  <p class="muted">{description}</p>
+  {href && <a class="button" href={href}>Ver módulo</a>}
+</article>

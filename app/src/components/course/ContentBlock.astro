@@ -1,0 +1,15 @@
+---
+export interface Props {
+  kind: 'concept' | 'example' | 'exercise' | 'reference';
+  title: string;
+  body: string;
+}
+
+const { kind, title, body } = Astro.props;
+---
+
+<article class="panel pad">
+  <span class="chip">{kind}</span>
+  <h3 style="margin-top: 14px;">{title}</h3>
+  <p class="muted">{body}</p>
+</article>
